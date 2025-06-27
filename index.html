@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Recurso Didáctico 3D: Aprendiendo Profesiones en Inglés</title>
+  <style>
+    :root {
+      --morado-fuerte: #802f94;
+      --naranja-intenso: #ff6a00;
+      --fondo-profundo: linear-gradient(135deg, #c43c85, #ff6a00);
+      --color-boton: #ffffff;
+      --sombra-boton: rgba(0, 0, 0, 0.2);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--fondo-profundo);
+      color: #fff;
+      text-align: center;
+    }
+
+    header {
+      display: flex;
+      justify-content: flex-end;
+      padding: 1rem;
+    }
+
+    .lang-toggle button {
+      background-color: var(--color-boton);
+      color: var(--morado-fuerte);
+      border: none;
+      padding: 10px 16px;
+      margin-left: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 4px 8px var(--sombra-boton);
+    }
+
+    .lang-toggle button:hover {
+      background-color: #f2cfff;
+      transform: scale(1.05);
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: -1rem auto 0; /* Reduce la separación desde arriba */
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .qr-container {
+      margin: 2rem auto;
+    }
+
+    .qr-border {
+      background-color: #ffffff;
+      display: inline-block;
+      padding: 12px;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+
+    .qr-container img {
+      width: 160px;
+      height: 160px;
+      border-radius: 0;
+      display: block;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 28px;
+      margin: 0.5rem;
+      background-color: var(--color-boton);
+      color: var(--morado-fuerte);
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: background-color 0.3s, transform 0.2s;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 4px 8px var(--sombra-boton);
+    }
+
+    .button:hover {
+      background-color: #fce3ff;
+      transform: scale(1.05);
+      font-weight: bold; /* Asegura negrita también en hover */
+    }
+
+    #fullscreen-frame {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background-color: #000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #fullscreen-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    #close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: white;
+      color: var(--morado-fuerte);
+      font-weight: bold;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 10000;
+      transition: background-color 0.3s;
+    }
+
+    #close-btn:hover {
+      background-color: #ffebe9;
+    }
+
+    footer {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="lang-toggle">
+      <button onclick="setLanguage('en')">English</button>
+      <button onclick="setLanguage('es')">Español</button>
+    </div>
+  </header>
+
+  <main>
+    <h1 id="title">Recurso Didáctico 3D: Aprendiendo Profesiones en Inglés</h1>
+    <p id="description">
+      Explora un recurso didáctico 3D interactivo en Delightex para facilitar el aprendizaje de profesiones en inglés, mediante escenas visuales y prácticas sin rostros humanos.
+    </p>
+
+    <div class="qr-container">
+      <div class="qr-border">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://edu.delightex.com/TCS-NNR" alt="Código QR">
+      </div>
+      <p>Escanea el código QR para abrirlo en tu dispositivo móvil</p>
+    </div>
+
+    <button class="button" onclick="openFullscreen()">Ver en Pantalla Completa</button>
+    <a class="button" href="https://edu.delightex.com/TCS-NNR" target="_blank">Abrir en Delightex</a>
+    <a class="button" href="https://play.google.com/store/apps/details?id=delightex.cospaces.edu" target="_blank">Descargar App (Android)</a>
+  </main>
+
+  <div id="fullscreen-frame">
+    <button id="close-btn" onclick="closeFullscreen()">Cerrar</button>
+    <iframe src="https://edu.delightex.com/TCS-NNR" allowfullscreen></iframe>
+  </div>
+
+  <footer>
+    © 2025 | Proyecto educativo en Delightex por Alvarez Carrera George Antonio
+  </footer>
+
+  <script>
+    function setLanguage(lang) {
+      if (lang === 'es') {
+        document.getElementById('title').innerText = 'Recurso Didáctico 3D: Aprendiendo Profesiones en Inglés';
+        document.getElementById('description').innerText = 'Explora un recurso didáctico 3D interactivo en Delightex para facilitar el aprendizaje de profesiones en inglés, mediante escenas visuales y prácticas sin rostros humanos.';
+        document.querySelector('.qr-container p').innerText = 'Escanea el código QR para abrirlo en tu dispositivo móvil';
+        document.querySelector('button.button').innerText = 'Ver en Pantalla Completa';
+        document.querySelectorAll('a.button')[0].innerText = 'Abrir en Delightex';
+        document.querySelectorAll('a.button')[1].innerText = 'Descargar App (Android)';
+        document.getElementById('close-btn').innerText = 'Cerrar';
+      } else {
+        document.getElementById('title').innerText = '3D Didactic Resource: Learning English Professions';
+        document.getElementById('description').innerText = 'Explore an interactive 3D didactic resource on Delightex to facilitate learning English professions, using visual scenes and practical activities without human faces.';
+        document.querySelector('.qr-container p').innerText = 'Scan the QR code to open on your mobile device';
+        document.querySelector('button.button').innerText = 'View in Fullscreen';
+        document.querySelectorAll('a.button')[0].innerText = 'Launch in Delightex';
+        document.querySelectorAll('a.button')[1].innerText = 'Download App (Android)';
+        document.getElementById('close-btn').innerText = 'Close';
+      }
+    }
+
+    function openFullscreen() {
+      document.getElementById('fullscreen-frame').style.display = 'flex';
+    }
+
+    function closeFullscreen() {
+      document.getElementById('fullscreen-frame').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
